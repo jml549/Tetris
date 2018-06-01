@@ -36,6 +36,17 @@ public class Tetris {
         }
     }
 
+    public void addPieceToBoard(Tetrimino pieceToAdd)
+    {
+        CoordinateNode node = pieceToAdd.getSpaceOccupied().getFirst();
+
+        while(node.getNext() != null)
+        {
+            this.board[node.getX()][node.getY()] = pieceToAdd.getType();
+            node = node.getNext();
+        }
+    }
+
 
     public StringBuilder getBoardString()
     {

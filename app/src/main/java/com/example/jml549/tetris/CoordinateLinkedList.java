@@ -2,37 +2,30 @@ package com.example.jml549.tetris;
 
 public class CoordinateLinkedList {
 
-    private CoordinateLinkedList nextNode;
-    private int x;
-    private int y;
+    CoordinateNode first;
+    int nodeCount;
 
-    public CoordinateLinkedList(int firstX, int firstY)
+    public CoordinateLinkedList(CoordinateNode first)
     {
-        this.x = firstX;
-        this.y = firstY;
-        CoordinateLinkedList first = new CoordinateLinkedList(x, y);
+        this.first = first;
+        this.nodeCount = 1;
     }
 
-    public void addCoordinate(CoordinateLinkedList first, int x, int y)
+    public void addCoordinate(CoordinateNode first, int type, int x, int y)
     {
-        CoordinateLinkedList node = first;
-        CoordinateLinkedList newNode = new CoordinateLinkedList(x, y);
+        CoordinateNode node = first;
+        CoordinateNode newNode = new CoordinateNode(type, x, y);
 
-        while(node.nextNode != null)
+        while(node.getNext() != null)
         {
-            node.nextNode = node.nextNode.nextNode;
+            node = node.getNext();
         }
 
-        node.nextNode = newNode;
+        node.setNext(newNode);
+        this.nodeCount++;
     }
 
-    public int getX()
-    {
-        return this.x;
-    }
-
-    public int getY()
-    {
-        return this.y;
+    public CoordinateNode getFirst() {
+        return first;
     }
 }
