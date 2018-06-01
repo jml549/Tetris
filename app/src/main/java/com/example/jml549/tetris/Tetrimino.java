@@ -19,30 +19,25 @@ public class Tetrimino {
      * 4 - right
      * */
     private int orientation;
-    private int[] location;
+    private CoordinateLinkedList spaceOccupied;
     boolean set; //flag to show when the piece is done moving
 
-    Tetrimino(int type, int[] location)
+    Tetrimino(int type)
     {
         this.type = type;
-        this.location = location;
+        this.spaceOccupied = newPieceSetup();
         this.orientation = 1;
 
     }
 
-    public int[][] setSpaceOccupied(int[][] board)
+    public CoordinateLinkedList newPieceSetup()
     {
         switch (this.type)
         {
-            case 1: board[this.location[0]][this.location[1]] = 1;
-                    board[this.location[0]+1][this.location[1]] = 1;
-                    board[this.location[0]][this.location[1]+1] = 1;
-                    board[this.location[0]+1][this.location[1]+1] = 1;
-                    return board;
+            case 1: break;
 
-            default: return board;
+            default: break;
         }
-
     }
 
     private int getType()
@@ -50,8 +45,8 @@ public class Tetrimino {
         return this.type;
     }
 
-    private int[] getLocation()
+    private CoordinateLinkedList getSpaceOccupied()
     {
-        return this.location;
+        return this.spaceOccupied;
     }
 }
