@@ -7,6 +7,7 @@ public class CoordinateNode {
     int y;
     CoordinateNode next;
 
+
     public CoordinateNode(int type, int x, int y)
     {
         this.type = type;

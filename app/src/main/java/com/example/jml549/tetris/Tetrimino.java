@@ -25,7 +25,7 @@ public class Tetrimino {
     Tetrimino(int type)
     {
         this.type = type;
-        CoordinateNode newNode = new CoordinateNode(type, 4, 0);
+        CoordinateNode newNode = new CoordinateNode(type, 0, 4);
         this.spaceOccupied = new CoordinateLinkedList(newNode);
         newPieceSetup(newNode);
         this.orientation = 1;
@@ -37,8 +37,8 @@ public class Tetrimino {
         switch (this.type)
         {
             case 1:
-                this.spaceOccupied.addCoordinate(first, first.getType(), first.getX()+1, first.getY());
                 this.spaceOccupied.addCoordinate(first, first.getType(), first.getX(), first.getY()+1);
+                this.spaceOccupied.addCoordinate(first, first.getType(), first.getX()+1, first.getY());
                 this.spaceOccupied.addCoordinate(first, first.getType(), first.getX()+1, first.getY()+1);
                 break;
 

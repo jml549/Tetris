@@ -22,6 +22,7 @@ public class CoordinateLinkedList {
         }
 
         node.setNext(newNode);
+        node.getNext().setNext(null);
         this.nodeCount++;
     }
 
