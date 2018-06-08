@@ -15,9 +15,19 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tetris = new Tetris();
+        this.tetris = new Tetris();
         TextView board = findViewById(R.id.board);
         board.setText(tetris.getBoardString());
+    }
+
+    public void startGame(View view)
+    {
+        int[][] board = tetris.getBoard();
+
+        while (this.tetris.getStatus())
+        {
+
+        }
     }
 
     public void update(View view)
@@ -30,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void addPiece(View view)
     {
-        int[] spawnLocation = {0,4};
-        Tetrimino tetrimino = new Tetrimino(1, spawnLocation);
+        Tetrimino tetrimino = new Tetrimino(1);
+        tetrimino.printCoordinateList();
+        tetris.addPieceToBoard(tetrimino);
 
         TextView board = findViewById(R.id.board);
-        tetrimino.setSpaceOccupied(tetris.getBoard());
         board.setText(tetris.getBoardString());
     }
 }

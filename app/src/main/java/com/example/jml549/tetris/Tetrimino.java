@@ -19,39 +19,52 @@ public class Tetrimino {
      * 4 - right
      * */
     private int orientation;
-    private int[] location;
+    private CoordinateLinkedList spaceOccupied;
     boolean set; //flag to show when the piece is done moving
 
-    Tetrimino(int type, int[] location)
+    Tetrimino(int type)
     {
         this.type = type;
-        this.location = location;
+        CoordinateNode newNode = new CoordinateNode(type, 0, 4);
+        this.spaceOccupied = new CoordinateLinkedList(newNode);
+        newPieceSetup(newNode);
         this.orientation = 1;
-
     }
 
-    public int[][] setSpaceOccupied(int[][] board)
+    public void newPieceSetup(CoordinateNode first)
     {
+        this.spaceOccupied = new CoordinateLinkedList(first);
         switch (this.type)
         {
-            case 1: board[this.location[0]][this.location[1]] = 1;
-                    board[this.location[0]+1][this.location[1]] = 1;
-                    board[this.location[0]][this.location[1]+1] = 1;
-                    board[this.location[0]+1][this.location[1]+1] = 1;
-                    return board;
+            case 1:
+                this.spaceOccupied.addCoordinate(first, first.getType(), first.getX(), first.getY()+1);
+                this.spaceOccupied.addCoordinate(first, first.getType(), first.getX()+1, first.getY());
+                this.spaceOccupied.addCoordinate(first, first.getType(), first.getX()+1, first.getY()+1);
+                break;
 
-            default: return board;
+            default: break;
         }
-
     }
 
-    private int getType()
+    public int getType()
     {
         return this.type;
     }
 
-    private int[] getLocation()
+    public CoordinateLinkedList getSpaceOccupied()
     {
-        return this.location;
+        return this.spaceOccupied;
+    }
+
+    public void printCoordinateList()
+    {
+        CoordinateNode node = this.spaceOccupied.getFirst();
+
+        while(node.getNext() != null)
+        {
+            System.out.println("X: " + node.getX() + " Y: " + node.getY());
+            node = node.getNext();
+        }
+
     }
 }

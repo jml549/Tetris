@@ -6,20 +6,47 @@ public class Tetris {
     private int width;
     private boolean running;
     private int score;
+    private Tetrimino[] pieces;
 
     Tetris()
     {
-        height = 12;
-        width = 10;
-        board = new int[height][width];
-        running = true;
-        score = 0;
+        this.height = 12;
+        this.width = 10;
+        this.board = new int[height][width];
+        this.running = true;
+        this.score = 0;
+        //this.pieces =
     }
 
     public int[][] getBoard()
     {
         return board;
     }
+
+    public boolean getStatus()
+    {
+        return this.running;
+    }
+
+    public void updatePieces()
+    {
+        for (int piece = 0; piece < this.pieces.length; piece++)
+        {
+
+        }
+    }
+
+    public void addPieceToBoard(Tetrimino pieceToAdd)
+    {
+        CoordinateNode node = pieceToAdd.getSpaceOccupied().getFirst();
+
+        while(node.getNext() != null)
+        {
+            this.board[node.getX()][node.getY()] = pieceToAdd.getType();
+            node = node.getNext();
+        }
+    }
+
 
     public StringBuilder getBoardString()
     {
